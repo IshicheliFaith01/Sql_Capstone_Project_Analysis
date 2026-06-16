@@ -81,10 +81,10 @@ Recommendations
 
 Project Files
 
-- Onyi_Ishicheli_SQL_Capstone.sql
-- Onyi_Ishicheli_SQL_Portfolio.pdf
-- Onyi_Ishicheli_SQL_Presentation.pdf
+- Faith_Ishicheli_SQL_Capstone.sql
+- Faith_Ishicheli_SQL_Portfolio.pdf
+- Faith_Ishicheli_SQL_Presentation.pdf
 
 Author
 
-Ishicheli Faith Onyi
+Ishicheli Faith 
