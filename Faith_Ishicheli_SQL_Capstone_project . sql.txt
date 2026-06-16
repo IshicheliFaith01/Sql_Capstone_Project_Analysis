@@ -1,0 +1,180 @@
+SQL CAPSTON PROJECT
+Prepared by: Ishicheli Faith
+
+
+SECTION 1: DATA EXPLORATION
+
+SELECT COUNT(*) FROM Donation_Data;
+SELECT * FROM Donation_data LIMIT 5;
+
+SELECT COUNT(*) AS total_donors
+FROM Donor_Data;
+
+SELECT COUNT (*) AS total_donations
+FROM Donation_Data;
+
+SELECT 
+ROUND(AVG(donation), 2) AS
+average_donation,
+MIN(donation) AS minimum_donation,
+MAX(donation) AS maximum_donation
+FROM Donation_Data;
+
+
+SELECT 
+ROUND(SUM(donation), 2) AS 
+total_donations_amount
+FROM Donation_Data;
+
+
+SELECT 
+gender,
+COUNT(*) AS donor_count
+FROM Donation_Data
+GROUP BY gender
+ORDER BY donor_count DESC;
+
+
+
+SELECT 
+first_name,
+last_name,
+donation
+FROM Donation_Data
+ORDER BY donation DESC
+LIMIT 10;
+
+SECTION 2: DATA QUALITY ASSESSMENT
+
+SELECT COUNT(*) FILTER (WHERE first_name IS NULL) AS
+missing_first_name,
+COUNT(*) FILTER (WHERE last_name IS NULL) AS 
+missing_last_name,
+COUNT(*) FILTER (WHERE email IS NULL) AS 
+missing_email,
+COUNT(*) FILTER (WHERE donation IS NULL) AS
+missing_donation FROM Donation_Data;
+
+
+SELECT
+COUNT(*) FILTER (WHERE donation_frequency IS NULL) AS
+missing_frequency,
+COUNT(*) FILTER (WHERE university IS NULL) AS
+missing_university,
+COUNT(*) FILTER (WHERE car IS NULL) AS 
+missing_car,
+COUNT(*) FILTER (WHERE movie_genre IS NULL) AS
+missing_movie_genre FROM Donor_Data;
+
+
+SELECT id, COUNT(*)
+FROM Donation_Data
+GROUP BY id
+HAVING COUNT(*) > 1;
+
+
+SELECT id, COUNT(*) FROM Donor_Data
+GROUP BY id
+HAVING COUNT(*) > 1;
+
+SELECT 
+MIN(donation) AS minimum_donation,
+MAX(donation) AS maximum_donation
+FROM Donation_Data;
+
+
+SECTION 3: DATA CLEANING
+
+SELECT 
+COUNT(*) AS missing_university_records 
+FROM Donor_Data
+WHERE university IS NULL;
+
+
+SECTION 4: BUSINESS ANALYSIS
+
+SELECT 
+gender,
+COUNT(*) AS donor_count,
+ROUND(AVG(donation), 2) AS 
+average_donation,
+SUM(donation) AS total_donation
+FROM Donation_Data
+Group by gender
+ORDER BY total_donation DESC;
+
+
+SELECT job_field,
+COUNT(*) AS donor_count,
+ROUND(AVG(donation), 2) AS 
+average_donation,
+SUM(donation) AS total_donation
+FROM Donation_Data
+GROUP BY job_field
+ORDER BY total_donation DESC
+LIMIT 10;
+
+SELECT
+state,
+COUNT(*) AS donor_count,
+SUM(donation) AS total_donation,
+ROUND(AVG(donation), 2) AS
+average_donation
+FROM Donation_Data
+GROUP BY state
+ORDER BY total_donation DESC
+LIMIT 10;
+
+
+SELECT
+donation_frequency,
+COUNT(*) AS donor_count
+FROM Donor_Data
+GROUP BY donation_frequency
+ORDER BY donor_count DESC;
+
+
+
+SELECT 
+car,
+COUNT(*) AS donor_count
+FROM Donor_Data
+GROUP BY car
+ORDER BY donor_count DESC
+LIMIT 10;
+
+
+SELECT
+movie_genre,
+COUNT(*) AS donor_count
+FROM Donor_Data
+GROUP BY movie_genre
+ORDER BY donor_count DESC
+LIMIT 10;
+
+
+
+SECTION 5: ADVANCED ANALYSIS
+
+SELECT
+gender,
+donation_frequency,
+COUNT(*) AS donor_count
+FROM Donation_Data d
+JOIN Donor_Data dd
+ON d.id = dd.id
+GROUP BY gender, donation_frequency
+ORDER BY gender, donor_count DESC;
+
+
+
+
+SELECT
+job_field,
+COUNT(*) AS donor_count,
+ROUND(AVG(donation), 2) AS
+average_donation
+FROM Donation_Data
+GROUP BY job_field
+ORDER BY average_donation DESC;
+
